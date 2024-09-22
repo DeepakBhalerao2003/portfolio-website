@@ -29,7 +29,7 @@ export const HeroSection = () => {
                     {/* <GitHubLogoIcon className="w-6 h-6"/>
                     <LinkedInLogoIcon className="w-6 h-6"/>  */}
                     <Link href="https://github.com/DeepakBhalerao2003/" target="_blank"><Github  className="hover:scale-125 hover:text-green-600 transition-all"/></Link>
-                    <Link href="https://www.linkedin.com/in/deepak-bhalerao-a2344a239" target="_blank"><Linkedin className="hover:scale-125 hover:text-green-600 transition-all"/></Link>
+                    <Link href="https://linkedin.com/in/deepak-bhalerao-a2344a239" target="_blank"><Linkedin className="hover:scale-125 hover:text-green-600 transition-all"/></Link>
                 </div>
 
                 <Link href={"/Deepak_Bhalerao.pdf"} target="_blank" download={'Deepak_Bhalerao.pdf'} className='hover:text-green-600 font-semibold transition-all'><Button className="bg-green-500 hover:bg-green-700 transition-all">Download Resume</Button></Link>
