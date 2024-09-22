@@ -12,7 +12,7 @@ export const AboutMe = () => {
         <div className="flex items-center flex-col lg:flex-row h-full gap-8 md:gap-16">
             <div className="max-w-[400px] h-[400px]   flex items-center justify-center relative">
                 
-                <div className="w-full   px-5 lg:px-0 h-full bg-gray-300 z-10 flex justify-center">
+                <div className="w-full   px-5 lg:px-0 h-full bg-gray-300  flex justify-center">
                     <Image
                         src={"/code.jpg"}
                         height={2000}
