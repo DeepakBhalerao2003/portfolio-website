@@ -71,7 +71,7 @@ export const Contact = () => {
                             </Link>
                         </Tooltip>
                         <Tooltip text="LinkedIn">
-                            <Link href="www.linkedin.com/in/deepak-bhalerao-a2344a239" target="_blank" rel="noopener noreferrer">
+                            <Link href="https://linkedin.com/in/deepak-bhalerao-a2344a239/" target="_blank" rel="noopener noreferrer">
                                 <Linkedin className="hover:scale-125 hover:bg-green-600 hover:text-white rounded-full px-2 w-10 h-10 transition-all" aria-label="LinkedIn" />
                             </Link>
                         </Tooltip>
@@ -81,7 +81,7 @@ export const Contact = () => {
                             </Link>
                         </Tooltip> */}
                         <Tooltip text="Hackerrank">
-                            <Link href="www.linkedin.com/in/deepak-bhalerao-a2344a239" target="_blank" rel="noopener noreferrer">
+                            <Link href="https://www.hackerrank.com/profile/bhaleraod60/" target="_blank" rel="noopener noreferrer">
                                 <Image
                                     src="hackerrank-brands-solid.svg"
                                     width={20}
