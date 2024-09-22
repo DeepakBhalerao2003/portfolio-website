@@ -110,8 +110,8 @@ export default function SkillsList() {
               href={`/admin/skills/${skill.id}`}              
               className="w-fit h-full border-2 hover:cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg flex flex-col"
             >
-                <div className="w-40 h-40 rounded-full overflow-hidden">
-                  <img src={skill.coverImage} alt="" className="w-full"/>
+                <div className="w-40 h-40">
+                  <img src={skill.coverImage} alt="" className="w-full h-full object-cover rounded-full"/>
                 </div>
                 <h1 className="text-xl text-center">{skill.title}</h1>
             </Link>

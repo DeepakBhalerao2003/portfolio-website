@@ -13,7 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { Messagebox } from "./Messagebox";
 
 const baseSchema = z.object({
   title: z.string(),
@@ -32,8 +33,12 @@ const coverImageSchema = z
   });
 
 export function SkillsForm({ skillid }: { skillid?: number }) {
+  const router = useRouter(); // Use useRouter from next/navigation
+
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { id } = useParams();
+  const [dialog, setDialog] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false); // Track form submission success
 
   const formSchema = skillid
     ? baseSchema.extend({ coverImage: coverImageSchema.optional() })
@@ -56,7 +61,7 @@ export function SkillsForm({ skillid }: { skillid?: number }) {
       const projectData = await res.json();
       form.setValue('title', projectData.title);
       setImagePreview(projectData.coverImage); // Set the image preview to the URL
-      form.setValue('coverImage', projectData.coverImage); // Set coverImage to the URL
+      // form.setValue('coverImage', projectData.coverImage); // Set coverImage to the URL
     } else {
       console.error("Failed to fetch project data");
     }
@@ -70,7 +75,7 @@ export function SkillsForm({ skillid }: { skillid?: number }) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("Submitting project", values); // Debug log
-    alert("Submitting project");
+    // alert("Submitting project");
     const formData = new FormData();
     formData.append("title", values.title);
     if (values.coverImage instanceof File) {
@@ -79,32 +84,23 @@ export function SkillsForm({ skillid }: { skillid?: number }) {
       // If coverImage is not a File, use the previous image URL
       formData.append("coverImage", imagePreview);
     }
-  
 
-    if (!skillid) {
-      const response = await fetch("/api/skills", {
-        method: "POST",
-        body: formData,
-      });
+    const response = skillid
+      ? await fetch(`/api/skills?id=${skillid}`, {
+          method: "PUT",
+          body: formData,
+        })
+      : await fetch("/api/skills", {
+          method: "POST",
+          body: formData,
+        });
 
-      if (response.ok) {
-        console.log("Project submitted successfully");
-      } else {
-        console.error("Failed to submit project");
-      }
-    }
-
-    if (skillid) {
-      const response = await fetch(`/api/skills?id=${skillid}`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Project submitted successfully");
-      } else {
-        console.error("Failed to submit project");
-      }
+    if (response.ok) {
+      console.log("Project submitted successfully");
+      setIsSuccess(true); // Set success state
+      setDialog(true);
+    } else {
+      console.error("Failed to submit project");
     }
   };
 
@@ -120,8 +116,23 @@ export function SkillsForm({ skillid }: { skillid?: number }) {
     }
   };
 
+  const handleDialogClose = (open: boolean) => {
+    setDialog(open);
+    if (!open && isSuccess) {
+      router.push("/admin/skills"); // Redirect after closing the dialog
+    }
+  };
+
   return (
     <Form {...form}>
+      <Messagebox
+        success="Success"
+        message="Skill has been saved successfully"
+        buttonText="Done"
+        open={dialog}
+        onOpenChange={handleDialogClose} // Use the custom handler
+      />
+
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}

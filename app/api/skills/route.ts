@@ -100,8 +100,8 @@ export async function POST(request: Request) {
     }
 }
 
-export async function PUT(request: Request) {
 
+export async function PUT(request: Request) {
     const cookieStore = cookies();
     const supabase = createClient();
     let formData;
@@ -126,9 +126,9 @@ export async function PUT(request: Request) {
     const title = formData.get("title");
     const coverImage = formData.get("coverImage") as File;
 
-    let coverImageUrl = null;
+    let coverImageUrl;
 
-    if (coverImage) {
+    if (coverImage && coverImage.name) {
         const fileExt = coverImage.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExt}`;
         const filePath = `${fileName}`;
