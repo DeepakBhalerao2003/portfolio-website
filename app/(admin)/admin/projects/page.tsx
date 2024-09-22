@@ -40,7 +40,7 @@ export default function ProjectList() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/projects", {
+        const response = await fetch("https://deepak-bhalerao.vercel.app/api/projects", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function ProjectList() {
   const deleteProject = async (id: number) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/projects?id=${id}`, {
+      const response = await fetch(`https://deepak-bhalerao.vercel.app/api/projects?id=${id}`, {
         method: "DELETE",
       });
 

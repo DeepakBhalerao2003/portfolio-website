@@ -27,7 +27,7 @@ export const ProjectSection = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/projects", {
+        const response = await fetch("https://deepak-bhalerao.vercel.app/api/projects", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
