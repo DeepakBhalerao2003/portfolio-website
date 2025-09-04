@@ -55,9 +55,9 @@ export const SkillsSection = () => {
     <div id="skills" className="py-8 md:py-16 flex flex-col gap-8 md:gap-16  items-center justify-center   ">
         <div className="text-xl px-4 py-2 bg-gray-300 rounded-md w-fit mx-auto">My Skills</div>
         {isLoading && <SkeletonLoader  />}
-        <div className="px-auto w-full grid space-y-6 grid-cols-3 md:grid-cols-5 lg:grid-cols-8  items-center ">
+        <div className="px-auto w-full grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8  items-center ">
             {skillsData.map(skill => (
-                <div key={skill.title} className="flex flex-col items-center">
+                <div key={skill.title} className="flex flex-col items-center my-6">
                     <Image
                          src={skill.coverImage}
                          width={100}
